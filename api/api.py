@@ -15,10 +15,6 @@ connectionString = f'DRIVER=SQL SERVER;SERVER={SERVER};DATABASE={DATABASE};Trust
 
 conn = pyodbc.connect(connectionString)
 
-SQL_QUERY = """
-SELECT * from temperatures_eau
-"""
-
 
 app = Flask(__name__)
 CORS(app)
@@ -26,6 +22,10 @@ CORS(app)
 
 @app.route("/get-water", methods=['GET'])
 def water():
+    SQL_QUERY = """
+    SELECT * from temperatures_eau
+    """
+
     cursor = conn.cursor()
     cursor.execute(SQL_QUERY)
     records = cursor.fetchall()
@@ -39,12 +39,36 @@ def water():
 
 @app.route("/get-pc", methods=['GET'])
 def pc():
-    return "dqhsbdhu"
+    SQL_QUERY = """
+    SELECT * from temperatures_server
+    """
+
+    cursor = conn.cursor()
+    cursor.execute(SQL_QUERY)
+    records = cursor.fetchall()
+
+    tab = []
+
+    for r in records:
+        tab.append(r)
+    return tab
 
 
 @app.route("/get-air", methods=['GET'])
 def air():
-    return "dqhsbdhu"
+    SQL_QUERY = """
+    SELECT * from temperatures_air
+    """
+
+    cursor = conn.cursor()
+    cursor.execute(SQL_QUERY)
+    records = cursor.fetchall()
+
+    tab = []
+
+    for r in records:
+        tab.append(r)
+    return tab
 
 
 if __name__ == "__main__":
