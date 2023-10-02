@@ -1,8 +1,8 @@
-import GPUtil
-
-def get_gpu_temperature():
-    gpus = GPUtil.getGPUs()
-    gpu_temperature = gpus[0].temperature
-    return gpu_temperature
-
-print("GPU Temperature:", get_gpu_temperature(), "°C")
+import wmi
+w = wmi.WMI(namespace="root\OpenHardwareMonitor")
+temperature_infos = w.Sensor()
+for sensor in temperature_infos:
+    if sensor.SensorType == u'Temperature' or sensor.SensorType == u'Power':
+        print(sensor.Name)
+        print(sensor.SensorType)
+        print(sensor.Value)
