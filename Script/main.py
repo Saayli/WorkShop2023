@@ -1,7 +1,8 @@
-import psutil
+import GPUtil
 
-def get_cpu_temperature():
-    cpu_temperature = psutil.sensors_temperatures()['coretemp'][0].current
-    return cpu_temperature
+def get_gpu_temperature():
+    gpus = GPUtil.getGPUs()
+    gpu_temperature = gpus[0].temperature
+    return gpu_temperature
 
-print("CPU Temperature:", get_cpu_temperature(), "°C")
+print("GPU Temperature:", get_gpu_temperature(), "°C")
