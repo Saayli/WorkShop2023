@@ -37,7 +37,7 @@ def water():
     return tab
 
 
-@app.route("/get-pc", methods=['GET'])
+@app.route("/get-server", methods=['GET'])
 def pc():
     SQL_QUERY = """
     SELECT * from temperatures_server
@@ -74,6 +74,7 @@ def air():
 def postWater():
     temp = request.form['temp']
     SQL_QUERY = f"""
+    USE [workshop2023]
     INSERT INTO temperatures_eau
            ([temp]
            ,[date])
@@ -84,6 +85,7 @@ def postWater():
 
     cursor = conn.cursor()
     cursor.execute(SQL_QUERY)
+    cursor.commit()
 
     return "Ok"
 
@@ -91,16 +93,18 @@ def postWater():
 def postServer():
     temp = request.form['temp']
     SQL_QUERY = f"""
+    USE [workshop2023]
     INSERT INTO temperatures_server
            ([temp]
            ,[date])
      VALUES
            ({temp}
-           ,GETDATE())
+           ,GETDATE())        
     """
 
     cursor = conn.cursor()
     cursor.execute(SQL_QUERY)
+    cursor.commit()
 
     return "Ok"
 
@@ -108,6 +112,7 @@ def postServer():
 def postAir():
     temp = request.form['temp']
     SQL_QUERY = f"""
+    USE [workshop2023]
     INSERT INTO temperatures_air
            ([temp]
            ,[date])
@@ -118,6 +123,7 @@ def postAir():
 
     cursor = conn.cursor()
     cursor.execute(SQL_QUERY)
+    cursor.commit()
 
     return "Ok"
 
