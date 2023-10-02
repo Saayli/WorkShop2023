@@ -1,4 +1,4 @@
-# TO INSTALL pip install pyodbc
+# TO INSTALL pip install pypyodbc
 # TO INSTALL pip install flask
 # TO INSTALL pip install flask_cors
 
@@ -69,6 +69,57 @@ def air():
     for r in records:
         tab.append(r)
     return tab
+
+@app.route("/set-water", methods=['POST'])
+def postWater():
+    temp = request.form['temp']
+    SQL_QUERY = f"""
+    INSERT INTO temperatures_eau
+           ([temp]
+           ,[date])
+     VALUES
+           ({temp}
+           ,GETDATE())
+    """
+
+    cursor = conn.cursor()
+    cursor.execute(SQL_QUERY)
+
+    return "Ok"
+
+@app.route("/set-server", methods=['POST'])
+def postServer():
+    temp = request.form['temp']
+    SQL_QUERY = f"""
+    INSERT INTO temperatures_server
+           ([temp]
+           ,[date])
+     VALUES
+           ({temp}
+           ,GETDATE())
+    """
+
+    cursor = conn.cursor()
+    cursor.execute(SQL_QUERY)
+
+    return "Ok"
+
+@app.route("/set-air", methods=['POST'])
+def postAir():
+    temp = request.form['temp']
+    SQL_QUERY = f"""
+    INSERT INTO temperatures_air
+           ([temp]
+           ,[date])
+     VALUES
+           ({temp}
+           ,GETDATE())
+    """
+
+    cursor = conn.cursor()
+    cursor.execute(SQL_QUERY)
+
+    return "Ok"
 
 
 if __name__ == "__main__":
