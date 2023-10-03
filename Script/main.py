@@ -1,8 +1,13 @@
-import GPUtil
+import wmi
 
-def get_gpu_temperature():
-    gpus = GPUtil.getGPUs()
-    gpu_temperature = gpus[0].temperature
-    return gpu_temperature
+w = wmi.WMI(namespace="root\OpenHardwareMonitor")
+temperature_infos = w.Sensor()
+for sensor in temperature_infos:
+        print(sensor.Name)
+        print(sensor.SensorType)
+        print(sensor.Value)
 
-print("GPU Temperature:", get_gpu_temperature(), "°C")
+"""
+w_temp = wmi.WMI(namespace="root\\wmi")
+print((w_temp.MSAcpi_ThermalZoneTemperature()[0].CurrentTemperature / 10.0) - 273.15)
+"""
