@@ -63,7 +63,7 @@ def pc():
     print(firstDate, endDate)
 
     SQL_QUERY = f"""
-    SELECT * from temperatures_eau as t
+    SELECT * from temperatures_server as t
     {where}
     order by date ASC
     """
@@ -93,7 +93,7 @@ def air():
     print(firstDate, endDate)
 
     SQL_QUERY = f"""
-    SELECT * from temperatures_eau as t
+    SELECT * from temperatures_air as t
     {where}
     order by date ASC
     """
