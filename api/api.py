@@ -130,15 +130,37 @@ def postWater():
 
 @app.route("/set-server", methods=['POST'])
 def postServer():
-    temp = request.form['temp']
+    temp_cpu_max = request.form['temp_cpu_max']
+    temp_cpu_avg = request.form['temp_cpu_avg']
+    temp_gpu = request.form['temp_gpu']
+    cons_cpu_total = request.form['cons_cpu_total']
+    cons_cpu_memory = request.form['cons_cpu_memory']
+    cons_cpu_core = request.form['cons_cpu_core']
+    cons_total = request.form['cons_total']
+    const_gpu = request.form['const_gpu']
     SQL_QUERY = f"""
     USE [workshop2023]
     INSERT INTO temperatures_server
-           ([temp]
-           ,[date])
+        ([temp_cpu_max]
+           ,[date]
+           ,[temp_cpu_avg]
+           ,[temp_gpu]
+           ,[cons_cpu_total]
+           ,[cons_cpu_memory]
+           ,[cons_cpu_core]
+           ,[cons_total]
+           ,[const_gpu])
      VALUES
-           ({temp}
-           ,GETDATE())        
+           ({temp_cpu_max}
+           ,GETDATE()
+           ,{temp_cpu_avg}
+           ,{temp_gpu}
+           ,{cons_cpu_total}
+           ,{cons_cpu_memory}
+           ,{cons_cpu_core}
+           ,{cons_total}
+           ,{const_gpu}
+           )        
     """
 
     cursor = conn.cursor()
