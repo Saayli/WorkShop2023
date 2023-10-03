@@ -23,7 +23,7 @@ CORS(app)
 @app.route("/get-water", methods=['GET'])
 def water():
     SQL_QUERY = """
-    SELECT * from temperatures_eau
+    SELECT * from temperatures_eau order by date ASC
     """
 
     cursor = conn.cursor()
@@ -40,7 +40,7 @@ def water():
 @app.route("/get-server", methods=['GET'])
 def pc():
     SQL_QUERY = """
-    SELECT * from temperatures_server
+    SELECT * from temperatures_server order by date ASC
     """
 
     cursor = conn.cursor()
@@ -57,7 +57,7 @@ def pc():
 @app.route("/get-air", methods=['GET'])
 def air():
     SQL_QUERY = """
-    SELECT * from temperatures_air
+    SELECT * from temperatures_air order by date ASC
     """
 
     cursor = conn.cursor()
