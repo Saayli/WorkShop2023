@@ -51,7 +51,7 @@ def pc():
     tab = []
 
     for r in records:
-        tab.append({"temp": r[0], "date": r[1] })
+        tab.append({"temp": r[0], "date": r[1], "consomation": r[2] })
 
     return tab
 
