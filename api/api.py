@@ -75,7 +75,17 @@ def pc():
     tab = []
 
     for r in records:
-        tab.append({"temp": r[0], "date": r[1], "consomation": r[2] })
+        tab.append({"temp_cpu_max": r[0],
+                    "date": r[1],
+                    "temp_cpu_avg": r[2],
+                    "temp_gpu": r[3],
+                    "cons_cpu_total": r[4],
+                    "cons_cpu_memory": r[5],
+                    "cons_cpu_core": r[6],
+                    "cons_total": r[7],
+                    "const_gpu": r[8],
+                    }
+                   )
 
     return tab
 
