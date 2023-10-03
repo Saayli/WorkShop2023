@@ -22,8 +22,20 @@ CORS(app)
 
 @app.route("/get-water", methods=['GET'])
 def water():
-    SQL_QUERY = """
-    SELECT * from temperatures_eau order by date ASC
+
+    firstDate = request.args.get('firstDate')
+    endDate = request.args.get('endDate')
+
+    where = ""
+    if firstDate and endDate:
+        where = f"where t.date between '{firstDate}' and '{endDate} 23:59:59.999'"
+
+    print(firstDate, endDate)
+
+    SQL_QUERY = f"""
+    SELECT * from temperatures_eau as t
+    {where}
+    order by date ASC
     """
 
     cursor = conn.cursor()
@@ -40,8 +52,20 @@ def water():
 
 @app.route("/get-server", methods=['GET'])
 def pc():
-    SQL_QUERY = """
-    SELECT * from temperatures_server order by date ASC
+
+    firstDate = request.args.get('firstDate')
+    endDate = request.args.get('endDate')
+
+    where = ""
+    if firstDate and endDate:
+        where = f"where t.date between '{firstDate}' and '{endDate} 23:59:59.999'"
+
+    print(firstDate, endDate)
+
+    SQL_QUERY = f"""
+    SELECT * from temperatures_eau as t
+    {where}
+    order by date ASC
     """
 
     cursor = conn.cursor()
@@ -58,8 +82,20 @@ def pc():
 
 @app.route("/get-air", methods=['GET'])
 def air():
-    SQL_QUERY = """
-    SELECT * from temperatures_air order by date ASC
+
+    firstDate = request.args.get('firstDate')
+    endDate = request.args.get('endDate')
+
+    where = ""
+    if firstDate and endDate:
+        where = f"where t.date between '{firstDate}' and '{endDate} 23:59:59.999'"
+
+    print(firstDate, endDate)
+
+    SQL_QUERY = f"""
+    SELECT * from temperatures_eau as t
+    {where}
+    order by date ASC
     """
 
     cursor = conn.cursor()
