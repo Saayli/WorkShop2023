@@ -33,7 +33,8 @@ def water():
     tab = []
 
     for r in records:
-        tab.append(r)
+        tab.append({"temp": r[0], "date": r[1] })
+
     return tab
 
 
@@ -50,7 +51,8 @@ def pc():
     tab = []
 
     for r in records:
-        tab.append(r)
+        tab.append({"temp": r[0], "date": r[1] })
+
     return tab
 
 
@@ -67,7 +69,8 @@ def air():
     tab = []
 
     for r in records:
-        tab.append(r)
+        tab.append({"temp": r[0], "date": r[1] })
+
     return tab
 
 @app.route("/set-water", methods=['POST'])
