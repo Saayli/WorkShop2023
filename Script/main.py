@@ -12,7 +12,6 @@ def get_temp_cpu_max():
         if sensor.SensorType == 'Temperature' and sensor.Name == 'Core Max':
             return float(f'{sensor.Value:.2f}')
 
-
 def get_temp_cpu_avg():
     for sensor in infos:
         if sensor.SensorType == 'Temperature' and sensor.Name == 'Core Average':
@@ -90,6 +89,8 @@ def get_temp_disk():
             return float(f'{sensor.Value:.2f}')
 
 while True:
+    w = wmi.WMI(namespace="root\LibreHardwareMonitor")
+    infos = w.Sensor()
     requests.post(url = "http://127.0.0.1:5000/set-server", data = {
     "cons_cpu_core": get_cons_cpu_core(),
     "cons_cpu_memory": get_cons_cpu_memory(),
@@ -102,5 +103,6 @@ while True:
     "temp_gpu": get_temp_gpu(),
     "temp_disk": get_temp_disk()
     })
+    print("send")
     time.sleep(60)
 

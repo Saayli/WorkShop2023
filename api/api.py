@@ -149,7 +149,7 @@ def postServer():
     cons_cpu_memory = request.form['cons_cpu_memory']
     cons_cpu_core = request.form['cons_cpu_core']
     cons_total = request.form['cons_total']
-    cons_gpu = request.form['const_gpu']
+    cons_gpu = request.form['cons_gpu']
     cons_cpu_package = request.form['cons_cpu_package']
     temp_disk = request.form['temp_disk']
     SQL_QUERY = f"""
