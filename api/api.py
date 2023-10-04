@@ -83,7 +83,8 @@ def pc():
                     "cons_cpu_memory": r[5],
                     "cons_cpu_core": r[6],
                     "cons_total": r[7],
-                    "const_gpu": r[8],
+                    "cons_gpu": r[8],
+                    "cons_cpu_package": r[9],
                     }
                    )
 
@@ -147,7 +148,8 @@ def postServer():
     cons_cpu_memory = request.form['cons_cpu_memory']
     cons_cpu_core = request.form['cons_cpu_core']
     cons_total = request.form['cons_total']
-    const_gpu = request.form['const_gpu']
+    cons_gpu = request.form['const_gpu']
+    cons_cpu_package = request.form['cons_cpu_package']
     SQL_QUERY = f"""
     USE [workshop2023]
     INSERT INTO temperatures_server
@@ -159,7 +161,8 @@ def postServer():
            ,[cons_cpu_memory]
            ,[cons_cpu_core]
            ,[cons_total]
-           ,[const_gpu])
+           ,[cons_gpu]
+           ,[cons_cpu_package])
      VALUES
            ({temp_cpu_max}
            ,GETDATE()
@@ -169,7 +172,8 @@ def postServer():
            ,{cons_cpu_memory}
            ,{cons_cpu_core}
            ,{cons_total}
-           ,{const_gpu}
+           ,{cons_gpu}
+           ,{cons_cpu_package}
            )        
     """
 
