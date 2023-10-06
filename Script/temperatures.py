@@ -26,4 +26,4 @@ while True:
     arduino_data = 0
     list_values.clear()
     arduino.close()
-    time.sleep(60)
+    time.sleep(10)

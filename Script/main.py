@@ -104,5 +104,5 @@ while True:
     "temp_disk": get_temp_disk()
     })
     print("send")
-    time.sleep(60)
+    time.sleep(10)
 

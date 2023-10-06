@@ -8,8 +8,7 @@ import pypyodbc as pyodbc
 
 SERVER = 'PORTABLE_MATTHI'
 DATABASE = 'workshop2023'
-USERNAME = 'python'
-PASSWORD = 'python'
+
 
 connectionString = f'DRIVER=SQL SERVER;SERVER={SERVER};DATABASE={DATABASE};Trust_Connection=yes;'
 
